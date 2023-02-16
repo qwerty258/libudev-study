@@ -34,6 +34,10 @@ int main(int argc, char* argv[])
         if (NULL != name)
             printf("name: %s\n", name);
 
+        printf("operstate: %s\n", udev_device_get_sysattr_value(dev, "operstate"));
+        printf("address: %s\n", udev_device_get_sysattr_value(dev, "address"));
+        printf("\n");
+
         udev_device_unref(dev);
     }
 
