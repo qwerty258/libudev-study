@@ -36,6 +36,14 @@ int main(int argc, char* argv[])
 
         printf("operstate: %s\n", udev_device_get_sysattr_value(dev, "operstate"));
         printf("address: %s\n", udev_device_get_sysattr_value(dev, "address"));
+
+        struct udev_device* pci_dev = udev_device_get_parent_with_subsystem_devtype(dev, "pci", NULL);
+        if (pci_dev != NULL) 
+        {
+            const char* slot_name = udev_device_get_property_value(pci_dev, "PCI_SLOT_NAME");
+            printf("pci: %s\n", slot_name);
+        }
+
         printf("\n");
 
         udev_device_unref(dev);
